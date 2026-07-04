@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RER — Réseau Éducatif Responsable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #14335C;
+    --navy-dark: #0B213D;
+    --gold: #D9A02C;
+    --gold-dark: #8C6412;
+    --green: #1F7A4E;
+    --green-dark: #12492E;
+    --cream: #FAF6EC;
+    --cream-2: #F1EAD8;
+    --charcoal: #262420;
+    --gray: #6B6860;
+    --white: #FFFFFF;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; }
+
+  a { text-decoration: none; color: inherit; }
+
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav.wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo { display: flex; align-items: center; gap: 12px; color: var(--white); }
+  .logo-mark {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; color: var(--gold);
+    flex-shrink: 0;
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .logo-text strong { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; }
+  .logo-text span { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 14.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy-dark); font-weight: 600;
+    padding: 10px 20px; border-radius: 999px; font-size: 14px; white-space: nowrap;
+  }
+  .burger { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy); color: var(--white);
+    padding: 96px 0 88px; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -120px; top: -120px;
+    width: 380px; height: 380px; border-radius: 50%;
+    border: 60px solid rgba(217,160,44,0.08);
+  }
+  .eyebrow {
+    display: inline-block; font-size: 12.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); font-weight: 600;
+    border: 1px solid rgba(217,160,44,0.4); padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: 42px; line-height: 1.28; max-width: 720px; font-weight: 500;
+  }
+  .hero .quote-mark { color: var(--gold); font-size: 48px; line-height: 0; position: relative; top: 14px; }
+  .hero p.lede {
+    margin-top: 24px; max-width: 560px; font-size: 17px; color: rgba(255,255,255,0.72);
+  }
+  .hero-actions { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy-dark); font-weight: 600;
+    padding: 14px 28px; border-radius: 999px; font-size: 15px; display: inline-block;
+    transition: transform 0.15s ease, background 0.2s;
+  }
+  .btn-primary:hover { background: #E8B04A; transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.35); color: var(--white);
+    padding: 14px 28px; border-radius: 999px; font-size: 15px; display: inline-block;
+    transition: border-color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap;
+  }
+  .hero-stats div strong { display: block; font-family: 'Fraunces', serif; font-size: 26px; color: var(--gold); }
+  .hero-stats div span { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* SECTION SHARED */
+  section { padding: 88px 0; }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head .tag {
+    font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green-dark); font-weight: 600; margin-bottom: 12px; display: block;
+  }
+  .section-head h2 { font-size: 32px; color: var(--navy-dark); }
+  .section-head p { margin-top: 14px; color: var(--gray); font-size: 15.5px; }
+
+  /* FORMATIONS */
+  .formations-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .fcard {
+    background: var(--white); border-radius: 12px; padding: 28px 26px;
+    border-top: 4px solid var(--navy); border: 1px solid rgba(38,36,32,0.08); border-top-width: 4px;
+  }
+  .fcard.c-navy { border-top-color: var(--navy); }
+  .fcard.c-gold { border-top-color: var(--gold); }
+  .fcard.c-green { border-top-color: var(--green); }
+  .fcard h3 { font-size: 19px; color: var(--navy-dark); margin-bottom: 14px; }
+  .fcard ul { list-style: none; }
+  .fcard li {
+    font-size: 14px; color: var(--gray); padding-left: 18px; position: relative; margin-bottom: 8px;
+  }
+  .fcard li::before {
+    content: ""; position: absolute; left: 0; top: 8px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+
+  /* PARCOURS */
+  .parcours { background: var(--navy-dark); color: var(--white); }
+  .parcours .section-head .tag { color: var(--gold); }
+  .parcours .section-head h2 { color: var(--white); }
+  .parcours .section-head p { color: rgba(255,255,255,0.6); }
+  .timeline { display: flex; position: relative; gap: 0; }
+  .timeline::before {
+    content: ""; position: absolute; top: 24px; left: 24px; right: 24px; height: 1px;
+    background: repeating-linear-gradient(to right, rgba(217,160,44,0.5) 0, rgba(217,160,44,0.5) 8px, transparent 8px, transparent 16px);
+  }
+  .tstep { flex: 1; position: relative; padding-right: 20px; }
+  .tstep:last-child { padding-right: 0; }
+  .tstep .num {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--navy-dark);
+    border: 2px solid var(--gold); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 15px;
+    position: relative; z-index: 2; margin-bottom: 20px;
+  }
+  .tstep h4 { font-size: 15.5px; font-weight: 600; margin-bottom: 8px; color: var(--white); }
+  .tstep p { font-size: 13.5px; color: rgba(255,255,255,0.6); }
+
+  /* PARTENAIRES */
+  .partners-strip { text-align: center; }
+  .partners-strip .section-head { margin: 0 auto 40px; text-align: center; }
+  .badges { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .badge-dot {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--cream-2); border: 1px solid rgba(38,36,32,0.1);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .badge-dot span { width: 20px; height: 20px; border-radius: 50%; background: var(--green); opacity: 0.5; }
+  .badge-dot:nth-child(2n) span { background: var(--navy); }
+  .badge-dot:nth-child(3n) span { background: var(--gold); }
+  .partners-strip .cap { margin-top: 24px; font-size: 13.5px; color: var(--gray); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; }
+  .contact-info h2 { font-size: 30px; color: var(--navy-dark); margin-bottom: 18px; }
+  .contact-info p.desc { color: var(--gray); font-size: 15px; margin-bottom: 32px; }
+  .info-row { display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+  .info-row .ico {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--navy);
+    color: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0; font-weight: 600; font-family: 'Fraunces', serif;
+  }
+  .info-row div strong { display: block; font-size: 14.5px; }
+  .info-row div span { font-size: 14px; color: var(--gray); }
+
+  .form-card {
+    background: var(--white); border-radius: 14px; padding: 40px;
+    border: 1px solid rgba(38,36,32,0.08);
+  }
+  .form-row { margin-bottom: 20px; }
+  .form-row label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 8px; color: var(--navy-dark); }
+  .form-row input, .form-row textarea, .form-row select {
+    width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(38,36,32,0.15);
+    font-family: 'Work Sans', sans-serif; font-size: 14.5px; background: var(--cream);
+  }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+    outline: none; border-color: var(--gold);
+  }
+  .form-row textarea { resize: vertical; min-height: 100px; }
+  .form-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .submit-btn {
+    background: var(--navy); color: var(--white); font-weight: 600; border: none;
+    padding: 15px 28px; border-radius: 999px; font-size: 15px; cursor: pointer;
+    width: 100%; transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--navy-dark); }
+  .form-success {
+    display: none; background: rgba(31,122,78,0.1); border: 1px solid var(--green);
+    color: var(--green-dark); padding: 14px 18px; border-radius: 8px; font-size: 14px; margin-top: 16px;
+  }
+
+  footer {
+    background: var(--navy-dark); color: rgba(255,255,255,0.55);
+    padding: 36px 0; text-align: center; font-size: 13.5px;
+  }
+  footer strong { color: var(--white); }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .burger { display: block; }
+    .hero h1 { font-size: 30px; }
+    .formations-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 28px; }
+    .timeline::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-two { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">
+      <div class="logo-mark">RER</div>
+      <div class="logo-text">
+        <strong>RER</strong>
+        <span>Réseau Éducatif Responsable</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#formations">Formations</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#partenaires">Partenaires</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Nous contacter</a>
+    <button class="burger">&#9776;</button>
+  </nav>
+</header>
+
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <span class="eyebrow">Réseau Éducatif Responsable</span>
+    <h1><span class="quote-mark">&ldquo;</span>La jeunesse bien éduquée est le fondement solide sur lequel repose l'avenir d'une nation prospère.</h1>
+    <p class="lede">RER accompagne jeunes et professionnels avec des formations accélérées, 100% pratiques, en informatique, gestion, comptabilité et développement personnel — logiciels et attestation inclus.</p>
+    <div class="hero-actions">
+      <a href="#formations" class="btn-primary">Voir les formations</a>
+      <a href="#contact" class="btn-secondary">Nous appeler</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>6</strong><span>domaines de formation</span></div>
+      <div><strong>100%</strong><span>pratique</span></div>
+      <div><strong>+</strong><span>logiciels offerts</span></div>
+      <div><strong>&#10003;</strong><span>attestation délivrée</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="formations">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Nos formations accélérées</span>
+      <h2>Pendant les grandes vacances</h2>
+      <p>Des sessions intensives conçues pour donner des compétences concrètes et immédiatement applicables, avec logiciels installés gratuitement et attestation à la clé.</p>
+    </div>
+    <div class="formations-grid">
+
+      <div class="fcard c-navy">
+        <h3>Informatique</h3>
+        <ul>
+          <li>Notion de base</li>
+          <li>Bureautique (Word, Excel, PowerPoint)</li>
+        </ul>
+      </div>
+
+      <div class="fcard c-gold">
+        <h3>Leadership</h3>
+        <ul>
+          <li>Fondamentaux du leadership</li>
+          <li>Valeurs, attitudes et comportement</li>
+        </ul>
+      </div>
+
+      <div class="fcard c-green">
+        <h3>Développement personnel</h3>
+        <ul>
+          <li>Prise de parole en public</li>
+          <li>Travail en équipe</li>
+          <li>Gestion du temps</li>
+          <li>Écoute active</li>
+        </ul>
+      </div>
+
+      <div class="fcard c-navy">
+        <h3>Comptabilité</h3>
+        <ul>
+          <li>Paramétrage et installation du logiciel comptable</li>
+          <li>Création du dossier comptable</li>
+          <li>Création des comptes généraux et tiers</li>
+          <li>Saisie des écritures comptables</li>
+          <li>Édition des états financiers</li>
+        </ul>
+      </div>
+
+      <div class="fcard c-gold">
+        <h3>Gestion</h3>
+        <ul>
+          <li>Traitement des salaires</li>
+          <li>Calcul des cotisations sociales et fiscales</li>
+          <li>Calcul des avances, acomptes et heures supplémentaires</li>
+          <li>Édition des bulletins de paie</li>
+        </ul>
+      </div>
+
+      <div class="fcard c-green">
+        <h3>Commercial</h3>
+        <ul>
+          <li>Gestion commerciale (clients, fournisseurs)</li>
+          <li>Devis, commandes, bons de livraison, factures</li>
+          <li>Suivi des remises et conditions tarifaires</li>
+          <li>Gestion et analyse des stocks</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="parcours" id="parcours">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Comment ça se passe</span>
+      <h2>Un parcours simple, du premier jour à l'attestation</h2>
+    </div>
+    <div class="timeline">
+      <div class="tstep">
+        <div class="num">01</div>
+        <h4>Inscription</h4>
+        <p>Choisissez votre domaine de formation et démarrez la session accélérée.</p>
+      </div>
+      <div class="tstep">
+        <div class="num">02</div>
+        <h4>Logiciels offerts</h4>
+        <p>Les logiciels nécessaires sont installés gratuitement pour chaque participant.</p>
+      </div>
+      <div class="tstep">
+        <div class="num">03</div>
+        <h4>Formation pratique</h4>
+        <p>Un apprentissage 100% pratique, orienté cas concrets et mise en situation.</p>
+      </div>
+      <div class="tstep">
+        <div class="num">04</div>
+        <h4>Attestation</h4>
+        <p>Une attestation est remise à l'issue de chaque formation suivie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partenaires" class="partners-strip">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Ils nous accompagnent</span>
+      <h2>Nos partenaires</h2>
+    </div>
+    <div class="badges">
+      <div class="badge-dot"><span></span></div>
+      <div class="badge-dot"><span></span></div>
+      <div class="badge-dot"><span></span></div>
+      <div class="badge-dot"><span></span></div>
+      <div class="badge-dot"><span></span></div>
+    </div>
+    <p class="cap">RER travaille avec plusieurs structures éducatives et techniques locales pour renforcer la qualité de ses formations.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="tag" style="color:var(--green-dark); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; display:block; margin-bottom:12px;">Contact</span>
+      <h2>Discutons de votre prochaine formation</h2>
+      <p class="desc">Une question sur nos sessions, un domaine qui vous intéresse ou une inscription à faire ? Écrivez-nous ou appelez directement.</p>
+
+      <div class="info-row">
+        <div class="ico">&#9742;</div>
+        <div><strong>Téléphone</strong><span>+221 77 715 27 09</span></div>
+      </div>
+      <div class="info-row">
+        <div class="ico">&#9679;</div>
+        <div><strong>Adresse</strong><span>CEM Arafat 2, Rufisque Est</span></div>
+      </div>
+      <div class="info-row">
+        <div class="ico">&#10022;</div>
+        <div><strong>Formations</strong><span>Informatique, Leadership, Comptabilité, Gestion, Commercial, Développement personnel</span></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form id="contactForm">
+        <div class="form-two">
+          <div class="form-row">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" placeholder="Votre nom" required>
+          </div>
+          <div class="form-row">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" placeholder="77 xxx xx xx" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="formation">Formation qui vous intéresse</label>
+          <select id="formation">
+            <option>Informatique</option>
+            <option>Leadership</option>
+            <option>Développement personnel</option>
+            <option>Comptabilité</option>
+            <option>Gestion</option>
+            <option>Commercial</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Votre message..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          <span style="display:inline-flex; align-items:center; gap:8px; justify-content:center;">
+            Envoyer via WhatsApp
+          </span>
+        </button>
+        <div class="form-success" id="formSuccess">Redirection vers WhatsApp...</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>RER</strong> — Réseau Éducatif Responsable · CEM Arafat 2, Rufisque Est · +221 77 715 27 09
+  </div>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var nom = document.getElementById('nom').value.trim();
+    var tel = document.getElementById('tel').value.trim();
+    var formation = document.getElementById('formation').value;
+    var message = document.getElementById('message').value.trim();
+
+    var texte = "Bonjour RER, je m'appelle " + nom
+      + ". Mon numéro : " + tel
+      + ". Je suis intéressé(e) par la formation : " + formation + "."
+      + (message ? " Message : " + message : "");
+
+    var numeroWhatsApp = "221777152709";
+    var lienWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(texte);
+
+    document.getElementById('formSuccess').style.display = 'block';
+    window.open(lienWhatsApp, '_blank');
+  });
+</script>
+
+</body>
+</html>
