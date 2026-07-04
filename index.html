@@ -65,6 +65,17 @@
     padding: 10px 20px; border-radius: 999px; font-size: 14px; white-space: nowrap;
   }
   .burger { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
+  .mobile-menu {
+    display: none; position: absolute; top: 76px; left: 0; right: 0;
+    background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.1);
+    flex-direction: column; padding: 8px 32px 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: rgba(255,255,255,0.85); font-size: 15px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-menu a:hover { color: var(--gold); }
 
   /* HERO */
   .hero {
@@ -253,8 +264,15 @@
       <a href="#contact">Contact</a>
     </div>
     <a href="#contact" class="nav-cta">Nous contacter</a>
-    <button class="burger">&#9776;</button>
+    <button class="burger" id="burgerBtn">&#9776;</button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#accueil">Accueil</a>
+    <a href="#formations">Formations</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#partenaires">Partenaires</a>
+    <a href="#contact">Contact</a>
+  </div>
 </header>
 
 <section class="hero" id="accueil">
@@ -459,6 +477,17 @@
 </footer>
 
 <script>
+  var burgerBtn = document.getElementById('burgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', function() {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
   document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
